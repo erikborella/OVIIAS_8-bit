@@ -4,6 +4,7 @@ from Forms_model import LoginForm, SingupForm
 from extensions import db
 from Models import User
 
+import session
 import hashlib
 
 auth = Blueprint('auth', __name__)
@@ -26,7 +27,17 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        return redirect(url_for('index'))
+        username = form.username.data
+        password = hash_string(form.password.data)
+
+        user: User = User.query.filter_by(
+            username=username, password=password).first()
+
+        if user is None:
+            return render_template("login.html", form=form, errors=form.errors, error="Usuario não encontrado")
+        else:
+            session.add(user.id)
+            return redirect(url_for('index'))
     return render_template("login.html", form=form, errors=form.errors)
 
 
@@ -45,6 +56,7 @@ def singup():
 
             db.session.add(new_user)
             db.session.commit()
+            session.add(new_user.id)
 
         return redirect(url_for("index"))
 
