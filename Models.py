@@ -1,5 +1,4 @@
-from Control import db
-
+from extensions import db
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +23,7 @@ class Product(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # personal information columns
-    username = db.Column(db.String(80), nullable=False)
+    username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(1000), nullable=False)
     email = db.Column(db.String(1000), nullable=False)
     # cart columns

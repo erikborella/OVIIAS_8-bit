@@ -1,4 +1,4 @@
-from Control import app, db
+from Control import app
 
 def migrate_db():
     db.drop_all()
