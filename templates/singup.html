@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../static/icon.ico" >
+    <title>8-bit Cadastrar</title>
+</head>
+
+<body class="nes-container">
+    <br>
+    <div class="nes-container with-title">
+        <p class="title">Cadastrar</p>
+        <div class="nes-field">
+            <form method="post" action="{{ url_for('auth.singup') }}">
+                <label for="name_field">Usuário</label>
+                <input type="text" id="name_field" class="nes-input" name="username">
+                {% if errors.username %}
+                    {{ errors.username[0] }}
+                {% endif %}
+                <br>
+                <label for="password_field">Senha</label>
+                <input type="password" id="password_field" class="nes-input" name="password">
+                {% if errors.password %}
+                    {{ errors.password[0] }}
+                {% endif %}
+                <br>
+                <button type="submit" class="nes-btn is-success">Cadastrar</button>
+                <a href="{{ url_for('auth.login') }}">
+                    <button type="button" class="nes-btn is-warning">Entrar</button>
+                </a>
+                {{ form.csrf_token }}
+            </form>
+            {{ error_msg }}
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
