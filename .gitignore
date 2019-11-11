@@ -2,3 +2,4 @@ database/data
 .idea/
 .vscode/
 .theia/
+__pycache__/
