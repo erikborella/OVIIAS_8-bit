@@ -28,6 +28,12 @@
                     {{ errors.password[0] }}
                 {% endif %}
                 <br>
+                <label for="email_field">Email</label>
+                <input type="email" id="email_field" class="nes-input" name="email">
+                {% if errors.email %}
+                    {{ errors.email[0] }}
+                {% endif %}
+                <br>
                 <button type="submit" class="nes-btn is-success">Cadastrar</button>
                 <a href="{{ url_for('auth.login') }}">
                     <button type="button" class="nes-btn is-warning">Entrar</button>
