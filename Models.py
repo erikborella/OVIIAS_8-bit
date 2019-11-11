@@ -1,8 +1,4 @@
-from Control import app
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-
-db: SQLAlchemy = SQLAlchemy(app)
+from Control import db
 
 
 class Product(db.Model):
