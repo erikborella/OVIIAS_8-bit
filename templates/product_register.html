@@ -1,0 +1,78 @@
+<!-- 0537 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../static/icon.ico">
+    <title>8-bit Cadastrar Produto</title>
+</head>
+
+<body class="nes-container">
+    <br>
+    <div class="nes-container with-title">
+        <p class="title">Entrar</p>
+        <div class="nes-field">
+            <form method="post" action="{{ url_for('store.product_register') }}" enctype="multipart/form-data">
+                <label for="name_field">Nome do produto</label>
+                <input type="text" id="name_field" class="nes-input" name="name">
+                {% if errors.name %}
+                    {{ errors.name[0] }}
+                {% endif %}
+                <br>
+                
+                <label for="description_field">Descrição</label>
+                <input id="description_field" class="nes-input" name="description">
+                {% if errors.description %}
+                    {{ errors.description[0] }}
+                {% endif %}
+                <br>
+
+                <label for="price_field">Preço</label>
+                <input type="number" id="price_field" class="nes-input" name="price" step="0.01" min="0.01">
+                {% if errors.price %}
+                    {{ errors.price[0] }}
+                {% endif %}
+                <br>
+
+                <label for="stock_field">Quantidade no Estoque</label>
+                <input type="number" id="stock_field" class="nes-input" name="stock" step="1" min="1">
+                {% if errors.stock %}
+                    {{ errors.stock[0] }}
+                {% endif %}
+                <br>
+
+                <label for="image_field">Imagem do produto</label>
+                <input type="file" id="image_field" class="nes-input" name="image">
+                {% if errors.image %}
+                    {{ errors.image[0] }}
+                {% endif %}
+                <br>
+
+                <label for="admin_password_field">Senha para cadastro</label>
+                <input type="password" id="admin_password_field" class="nes-input" name="admin_password">
+                {% if errors.admin_password %}
+                    {{ errors.admin_password[0] }}
+                {% else %}
+                    {% if error %}
+                        {{ error }}
+                    {% endif %}
+                {% endif %}
+                <br>
+
+                <button type="submit" class="nes-btn is-success">Entrar</button>
+                {{ form.csrf_token }}
+            </form>
+            {% if message %}
+                {{ message }}
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
