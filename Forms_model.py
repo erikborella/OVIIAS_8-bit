@@ -1,8 +1,11 @@
+from flask_uploads import UploadSet, IMAGES
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileRequired
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 from wtforms import StringField, PasswordField, IntegerField, FloatField, validators
 from wtforms.validators import DataRequired, Email
+
+images = UploadSet('images', IMAGES)
 
 
 class LoginForm(FlaskForm):
@@ -33,4 +36,5 @@ class ProductForm(FlaskForm):
     image = FileField("image", validators=[FileRequired("Envie uma imagem")])
 
     admin_password = PasswordField("admin_password", validators=[
-                                   DataRequired("Digite a senha de administrador")])
+                                   DataRequired("Digite a senha de administrador"), 
+                                   FileAllowed(images, "Apenas imagens")])
