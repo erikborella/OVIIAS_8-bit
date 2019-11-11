@@ -20,6 +20,10 @@
                 <input type="text" id="name_field" class="nes-input" name="username">
                 {% if errors.username %}
                     {{ errors.username[0] }}
+                {% else %}
+                    {% if error %}
+                        {{ error }}
+                    {% endif %}
                 {% endif %}
                 <br>
                 <label for="password_field">Senha</label>
