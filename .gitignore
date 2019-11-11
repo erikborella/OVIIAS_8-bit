@@ -1,5 +1,4 @@
 database/data
-venv/
 .idea/
 .vscode/
 .theia/
