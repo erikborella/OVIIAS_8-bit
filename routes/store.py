@@ -49,3 +49,12 @@ def product_register():
 def product(id):
     product = Product.query.filter_by(id=id).first_or_404("Produto nao encontrado")
     return render_template("product.html", product=product)
+
+@store.route('/product')
+def product_to_showcase():
+    return redirect(url_for('store.showcase'))
+
+@store.route('/showcase')
+def showcase():
+    products = Product.query.all()
+    return render_template("showcase.html", products=products)
