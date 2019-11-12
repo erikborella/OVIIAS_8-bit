@@ -3,3 +3,4 @@ database/data
 .vscode/
 .theia/
 __pycache__/
+static/products_image/*
