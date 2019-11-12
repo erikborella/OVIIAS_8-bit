@@ -19,7 +19,9 @@
                 <label for="name_field">Usuário</label>
                 <input type="text" id="name_field" class="nes-input" name="username">
                 {% if errors.username %}
-                    {{ errors.username[0] }}
+                    {% for err in errors.username %}
+                        {{ err }}
+                    {% endfor %}
                 {% else %}
                     {% if error %}
                         {{ error }}
@@ -29,7 +31,9 @@
                 <label for="password_field">Senha</label>
                 <input type="password" id="password_field" class="nes-input" name="password">
                 {% if errors.password %}
-                    {{ errors.password[0] }}
+                    {% for err in errors.password %}
+                        {{ err }}
+                    {% endfor %}
                 {% endif %}
                 <br>
                 <button type="submit" class="nes-btn is-success">Entrar</button>

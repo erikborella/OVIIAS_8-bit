@@ -21,42 +21,54 @@
                 <label for="name_field">Nome do produto</label>
                 <input type="text" id="name_field" class="nes-input" name="name">
                 {% if errors.name %}
-                    {{ errors.name[0] }}
+                    {% for err in errors.name %}
+                        {{ err }}
+                    {% endfor %}
                 {% endif %}
                 <br>
                 
                 <label for="description_field">Descrição</label>
                 <input id="description_field" class="nes-input" name="description">
                 {% if errors.description %}
-                    {{ errors.description[0] }}
+                    {% for err in errors.description %}
+                        {{ err }}
+                    {% endfor %}
                 {% endif %}
                 <br>
 
                 <label for="price_field">Preço</label>
                 <input type="number" id="price_field" class="nes-input" name="price" step="0.01" min="0.01">
                 {% if errors.price %}
-                    {{ errors.price[0] }}
+                    {% for err in errors.price %}
+                        {{ err }}
+                    {% endfor %}
                 {% endif %}
                 <br>
 
                 <label for="stock_field">Quantidade no Estoque</label>
                 <input type="number" id="stock_field" class="nes-input" name="stock" step="1" min="1">
                 {% if errors.stock %}
-                    {{ errors.stock[0] }}
+                    {% for err in errors.stock %}
+                        {{ err }}
+                    {% endfor %}
                 {% endif %}
                 <br>
 
                 <label for="image_field">Imagem do produto</label>
                 <input type="file" id="image_field" class="nes-input" name="image">
                 {% if errors.image %}
-                    {{ errors.image[0] }}
+                    {% for err in errors.image %}
+                        {{ err }}
+                    {% endfor %}
                 {% endif %}
                 <br>
 
                 <label for="admin_password_field">Senha para cadastro</label>
                 <input type="password" id="admin_password_field" class="nes-input" name="admin_password">
                 {% if errors.admin_password %}
-                    {{ errors.admin_password[0] }}
+                    {% for err in errors.admin_password %}
+                        {{ err }}
+                    {% endfor %}
                 {% else %}
                     {% if error %}
                         {{ error }}
@@ -64,7 +76,7 @@
                 {% endif %}
                 <br>
 
-                <button type="submit" class="nes-btn is-success">Entrar</button>
+                <button type="submit" class="nes-btn is-success">Cadastrar Produto</button>
                 {{ form.csrf_token }}
             </form>
             {% if message %}
