@@ -1,11 +1,21 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 from Forms_model import ProductForm
 
 from extensions import db
 from Models import Product
 
+import session
+
 store = Blueprint("store", __name__)
+
+@store.route('/')
+def index():
+    if session.is_logged():
+        return str(session.get())
+    else:
+        flash("Você precisa estar logado para fazer isso")
+        return redirect(url_for("auth.login"))
 
 
 @store.route('/product_register', methods=['GET', 'POST'])

@@ -13,6 +13,7 @@ def create_app(debug=True):
 def set_configurations(app):
     app.secret_key = "personificação"
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/db'
+    app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 
 def register_extension(app):

@@ -37,7 +37,7 @@ def login():
             return render_template("login.html", form=form, errors=form.errors, error="Usuario não encontrado")
         else:
             session.add(user.id)
-            return redirect(url_for('index'))
+            return redirect(url_for('store.index'))
     return render_template("login.html", form=form, errors=form.errors)
 
 
@@ -58,6 +58,12 @@ def singup():
             db.session.commit()
             session.add(new_user.id)
 
-        return redirect(url_for("index"))
+        return redirect(url_for("store.index"))
 
     return render_template("singup.html", form=form, errors=form.errors)
+
+
+@auth.route('/singout')
+def singout():
+    session.remove()
+    return redirect(url_for("auth.login"))
