@@ -1,4 +1,4 @@
-from Control import app
+from control import app
 from extensions import db
 
 def migrate_db():

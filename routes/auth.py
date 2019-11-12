@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from Forms_model import LoginForm, SingupForm
+from forms_model import LoginForm, SingupForm
 
 from extensions import db
-from Models import User
+from models import User
 
 import session
 import hashlib

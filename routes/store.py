@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-from Forms_model import ProductForm
+from forms_model import ProductForm
 
 from extensions import db
-from Models import Product
+from models import Product
 
 import session
 
