@@ -44,3 +44,8 @@ def product_register():
             return render_template("product_register.html", form=form, errors=form.errors, error="Senha de adimistrador errada")
 
     return render_template("product_register.html", form=form, errors=form.errors)
+
+@store.route('/product/<id>')
+def product(id):
+    product = Product.query.filter_by(id=id).first_or_404("Produto nao encontrado")
+    return render_template("product.html", product=product)
