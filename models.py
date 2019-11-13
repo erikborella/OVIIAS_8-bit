@@ -53,6 +53,8 @@ class Buy(db.Model):
     product = db.relationship(
         'Product', backref=db.backref('products', lazy=True))
 
+    n_items = db.Column(db.Integer, nullable=False)
+
     def __init__(self, user, product):
         self.user = user
         self.product = product
