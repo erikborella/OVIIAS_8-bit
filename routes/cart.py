@@ -50,26 +50,33 @@ def add_to_cart():
                 return redirect(url_for('store.showcase'))
 
 
-@cart.route("/cart/remove/<int:id>/<int:quant>")
-def remove_to_cart(id: int, quant: int):
+@cart.route('/cart/remove', methods=['POST'])
+def remove_to_cart():
     if not session.is_logged():
         flash("Voce precisa estar logado para fazer isso")
         return redirect(url_for('auth.login'))
     else:
-        buy: Buy = Buy.query.filter_by(user_id=session.get(
-        ), product_id=id).first_or_404("Voce não possui essa compra")
+        product_id = int(request.form['product_id'])
+        quant = int(request.form['quant'])
 
-        if quant >= buy.n_items:
-            quant = buy.n_items
-            db.session.delete(buy)
+        if not product_id or not quant:
+            flash("Informações faltantes")
+            return redirect(url_for('store.index'))
         else:
-            buy.n_items -= quant
+            buy: Buy = Buy.query.filter_by(user_id=session.get(
+            ), product_id=product_id).first_or_404("Voce nao possui essa compra")
 
-        buy.user.n_items -= quant
-        buy.user.subtotal -= quant * buy.product.price
-        buy.product.stock += quant
+            if quant >= buy.n_items:
+                quant = buy.n_items
+                db.session.delete(buy)
+            else:
+                buy.n_items -= quant
 
-        db.session.commit()
+            buy.user.n_items -= quant
+            buy.user.subtotal -= quant * buy.product.price
+            buy.product.stock += quant
 
-        flash("Produto removido do seu carinho")
-        return redirect(url_for('store.showcase'))
+            db.session.commit()
+
+            flash("Produto removido do seu carinho")
+            return redirect(url_for('store.showcase'))
