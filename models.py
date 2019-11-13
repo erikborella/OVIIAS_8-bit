@@ -55,9 +55,10 @@ class Buy(db.Model):
 
     n_items = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, user, product):
+    def __init__(self, user, product, n_items):
         self.user = user
         self.product = product
+        self.n_items = n_items
 
     def __repr__(self):
         return "<Buy %r:%r>" % (self.user, self.product)
