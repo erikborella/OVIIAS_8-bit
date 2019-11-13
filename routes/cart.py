@@ -1,5 +1,4 @@
 from flask import Blueprint, redirect, url_for, flash
-from sqlalchemy import update
 from extensions import db
 
 from models import Product, User
@@ -28,6 +27,6 @@ def add_to_cart(id, quant):
             user.subtotal += product.price * quant
 
             product.stock -= quant
-            
+
             db.session.commit()
             return "sim"
