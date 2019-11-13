@@ -58,4 +58,4 @@ class Buy(db.Model):
         self.product = product
 
     def __repr__(self):
-        return "<Buy %r:%r>" % (user, product)
+        return "<Buy %r:%r>" % (self.user, self.product)
